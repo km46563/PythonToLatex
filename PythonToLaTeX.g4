@@ -4,17 +4,27 @@ grammar PythonToLaTeX;
 
 start: expression EOF;
 
-expression: add_expression;
+expression: expression '+' term #addOp
+          | expression '-' term #subOp
+          | term                #exprTerm
+          ;
 
-add_expression: mul_expression (('+' | '-') mul_expression)*;
+term: term '*' factor           #mulOp
+    | term '/' factor           #divOp
+    | factor                    #termFactor
+    ;
 
-mul_expression: atom_expression (('*' | '/') atom_expression)*;
-
-atom_expression: '(' expression ')' | INT | ID;
-
+factor: INT                     #number
+      | ID                      #variable
+      | '(' expression ')'      #parenExpr
+      ;
 
 // Lexer Rules
 
+ADD: '+';
+SUB: '-';
+MUL: '*';
+DIV: '/';
 EQ: '=';
 COMMA: '.';
 SEMI: ';';

@@ -4,35 +4,34 @@ from PythonToLaTeXParser import PythonToLaTeXParser
 
 
 class PythonToLaTeXVisitor(antlr4.ParseTreeVisitor):
-    def visitStart(self, ctx):
-        return self.visit(ctx.expression())
+    def visitStart(self, ctx:PythonToLaTeXParser.StartContext):
+        return self.visitExpression(ctx.expression())
 
-    def visitAdd_expression(self, ctx):
-        latex = self.visit(ctx.mul_expression(0))
-        for i in range(1, len(ctx.mul_expression())):
-            if ctx.getChild(i).getText() == "+":
-                latex += "+" + self.visit(ctx.mul_expression(i))
-            else:
-                latex += "-" + self.visit(ctx.mul_expression(i))
-        return latex
-
-    def visitMul_expression(self, ctx):
-        latex = self.visit(ctx.atom_expression(0))
-        for i in range(1, len(ctx.atom_expression())):
-            if ctx.getChild(i).getText() == "*":
-                latex += "\\cdot" + self.visit(ctx.atom_expression(i))
-            else:
-                latex += (
-                    "\\frac{" + latex + "}{" + self.visit(ctx.atom_expression(i)) + "}"
-                )
-        return latex
-
-    def visitAtom_expression(self, ctx):
-        if ctx.getChild(0).getText() == "(":
-            return "(" + self.visit(ctx.expression()) + ")"
+    def visitExpression(self, ctx:PythonToLaTeXParser.ExpressionContext):
+        if ctx.getChildCount() > 1 and ctx.getChild(1).getText() in ['+', '-']:
+            left = self.visitExpression(ctx.expression())
+            right = self.visitTerm(ctx.term())
+            operator = ctx.getChild(1).getText()
+            return f"{left} {operator} {right}"
         else:
-            return ctx.getText()
+            return self.visitTerm(ctx.term())
 
+    def visitTerm(self, ctx: PythonToLaTeXParser.TermContext):
+        if ctx.getChildCount() > 1 and ctx.getChild(1).getText() in ['*', '/']:
+            left = self.visitTerm(ctx.term())
+            right = self.visitFactor(ctx.factor())
+            operator = ctx.getChild(1).getText()
+            return f"{left} {operator} {right}"
+        else:
+            return self.visitFactor(ctx.factor())
+
+    def visitFactor(self, ctx: PythonToLaTeXParser.FactorContext):
+        if ctx.INT():
+            return ctx.INT().getText()
+        elif ctx.expression():
+            return f"({self.visitExpression(ctx.expression())})"
+        else:
+            return None
 
 def convert_to_latex(expression):
     lexer = PythonToLaTeXLexer(antlr4.InputStream(expression))
@@ -40,9 +39,9 @@ def convert_to_latex(expression):
     parser = PythonToLaTeXParser(stream)
     tree = parser.start()
     visitor = PythonToLaTeXVisitor()
-    return visitor.visit(tree)
+    return visitor.visitStart(tree)
 
 
-#expression = "2 + 2"
-#latex = convert_to_latex(expression)
-#print(latex)
+expression = "2 + 3 * 4"
+latex = convert_to_latex(expression)
+print(latex)

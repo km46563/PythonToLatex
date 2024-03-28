@@ -41,10 +41,10 @@ class PythonToLaTeXLexer(Lexer):
 
     decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
 
-    T__0 = 1
-    T__1 = 2
-    T__2 = 3
-    T__3 = 4
+    ADD = 1
+    SUB = 2
+    MUL = 3
+    DIV = 4
     EQ = 5
     COMMA = 6
     SEMI = 7
@@ -62,10 +62,11 @@ class PythonToLaTeXLexer(Lexer):
             "'+'", "'-'", "'*'", "'/'", "'='", "'.'", "';'", "'('", "')'" ]
 
     symbolicNames = [ "<INVALID>",
-            "EQ", "COMMA", "SEMI", "LPAREN", "RPAREN", "INT", "ID", "WS" ]
+            "ADD", "SUB", "MUL", "DIV", "EQ", "COMMA", "SEMI", "LPAREN", 
+            "RPAREN", "INT", "ID", "WS" ]
 
-    ruleNames = [ "T__0", "T__1", "T__2", "T__3", "EQ", "COMMA", "SEMI", 
-                  "LPAREN", "RPAREN", "INT", "ID", "WS" ]
+    ruleNames = [ "ADD", "SUB", "MUL", "DIV", "EQ", "COMMA", "SEMI", "LPAREN", 
+                  "RPAREN", "INT", "ID", "WS" ]
 
     grammarFileName = "PythonToLaTeX.g4"
 

@@ -17,39 +17,84 @@ class PythonToLaTeXListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PythonToLaTeXParser#expression.
-    def enterExpression(self, ctx:PythonToLaTeXParser.ExpressionContext):
+    # Enter a parse tree produced by PythonToLaTeXParser#addOp.
+    def enterAddOp(self, ctx:PythonToLaTeXParser.AddOpContext):
         pass
 
-    # Exit a parse tree produced by PythonToLaTeXParser#expression.
-    def exitExpression(self, ctx:PythonToLaTeXParser.ExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by PythonToLaTeXParser#add_expression.
-    def enterAdd_expression(self, ctx:PythonToLaTeXParser.Add_expressionContext):
-        pass
-
-    # Exit a parse tree produced by PythonToLaTeXParser#add_expression.
-    def exitAdd_expression(self, ctx:PythonToLaTeXParser.Add_expressionContext):
+    # Exit a parse tree produced by PythonToLaTeXParser#addOp.
+    def exitAddOp(self, ctx:PythonToLaTeXParser.AddOpContext):
         pass
 
 
-    # Enter a parse tree produced by PythonToLaTeXParser#mul_expression.
-    def enterMul_expression(self, ctx:PythonToLaTeXParser.Mul_expressionContext):
+    # Enter a parse tree produced by PythonToLaTeXParser#subOp.
+    def enterSubOp(self, ctx:PythonToLaTeXParser.SubOpContext):
         pass
 
-    # Exit a parse tree produced by PythonToLaTeXParser#mul_expression.
-    def exitMul_expression(self, ctx:PythonToLaTeXParser.Mul_expressionContext):
+    # Exit a parse tree produced by PythonToLaTeXParser#subOp.
+    def exitSubOp(self, ctx:PythonToLaTeXParser.SubOpContext):
         pass
 
 
-    # Enter a parse tree produced by PythonToLaTeXParser#atom_expression.
-    def enterAtom_expression(self, ctx:PythonToLaTeXParser.Atom_expressionContext):
+    # Enter a parse tree produced by PythonToLaTeXParser#exprTerm.
+    def enterExprTerm(self, ctx:PythonToLaTeXParser.ExprTermContext):
         pass
 
-    # Exit a parse tree produced by PythonToLaTeXParser#atom_expression.
-    def exitAtom_expression(self, ctx:PythonToLaTeXParser.Atom_expressionContext):
+    # Exit a parse tree produced by PythonToLaTeXParser#exprTerm.
+    def exitExprTerm(self, ctx:PythonToLaTeXParser.ExprTermContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#divOp.
+    def enterDivOp(self, ctx:PythonToLaTeXParser.DivOpContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#divOp.
+    def exitDivOp(self, ctx:PythonToLaTeXParser.DivOpContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#mulOp.
+    def enterMulOp(self, ctx:PythonToLaTeXParser.MulOpContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#mulOp.
+    def exitMulOp(self, ctx:PythonToLaTeXParser.MulOpContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#termFactor.
+    def enterTermFactor(self, ctx:PythonToLaTeXParser.TermFactorContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#termFactor.
+    def exitTermFactor(self, ctx:PythonToLaTeXParser.TermFactorContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#number.
+    def enterNumber(self, ctx:PythonToLaTeXParser.NumberContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#number.
+    def exitNumber(self, ctx:PythonToLaTeXParser.NumberContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#variable.
+    def enterVariable(self, ctx:PythonToLaTeXParser.VariableContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#variable.
+    def exitVariable(self, ctx:PythonToLaTeXParser.VariableContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#parenExpr.
+    def enterParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#parenExpr.
+    def exitParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
         pass
 
 
