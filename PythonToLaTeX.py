@@ -43,6 +43,6 @@ def convert_to_latex(expression):
     return visitor.visit(tree)
 
 
-expression = "2 + 2"
-latex = convert_to_latex(expression)
-print(latex)
+#expression = "2 + 2"
+#latex = convert_to_latex(expression)
+#print(latex)
