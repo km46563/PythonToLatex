@@ -140,6 +140,9 @@ class PythonToLaTeXParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.ExpressionContext
             super().__init__(parser)
+            self.l = None # ExpressionContext
+            self.op = None # Token
+            self.r = None # TermContext
             self.copyFrom(ctx)
 
         def expression(self):
@@ -164,6 +167,9 @@ class PythonToLaTeXParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.ExpressionContext
             super().__init__(parser)
+            self.l = None # ExpressionContext
+            self.op = None # Token
+            self.r = None # TermContext
             self.copyFrom(ctx)
 
         def expression(self):
@@ -233,28 +239,30 @@ class PythonToLaTeXParser ( Parser ):
                     la_ = self._interp.adaptivePredict(self._input,0,self._ctx)
                     if la_ == 1:
                         localctx = PythonToLaTeXParser.AddOpContext(self, PythonToLaTeXParser.ExpressionContext(self, _parentctx, _parentState))
+                        localctx.l = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 14
                         if not self.precpred(self._ctx, 3):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
                         self.state = 15
-                        self.match(PythonToLaTeXParser.ADD)
+                        localctx.op = self.match(PythonToLaTeXParser.ADD)
                         self.state = 16
-                        self.term(0)
+                        localctx.r = self.term(0)
                         pass
 
                     elif la_ == 2:
                         localctx = PythonToLaTeXParser.SubOpContext(self, PythonToLaTeXParser.ExpressionContext(self, _parentctx, _parentState))
+                        localctx.l = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 17
                         if not self.precpred(self._ctx, 2):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                         self.state = 18
-                        self.match(PythonToLaTeXParser.SUB)
+                        localctx.op = self.match(PythonToLaTeXParser.SUB)
                         self.state = 19
-                        self.term(0)
+                        localctx.r = self.term(0)
                         pass
 
              
@@ -291,6 +299,9 @@ class PythonToLaTeXParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.TermContext
             super().__init__(parser)
+            self.l = None # TermContext
+            self.op = None # Token
+            self.r = None # FactorContext
             self.copyFrom(ctx)
 
         def term(self):
@@ -315,6 +326,9 @@ class PythonToLaTeXParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.TermContext
             super().__init__(parser)
+            self.l = None # TermContext
+            self.op = None # Token
+            self.r = None # FactorContext
             self.copyFrom(ctx)
 
         def term(self):
@@ -384,28 +398,30 @@ class PythonToLaTeXParser ( Parser ):
                     la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
                     if la_ == 1:
                         localctx = PythonToLaTeXParser.MulOpContext(self, PythonToLaTeXParser.TermContext(self, _parentctx, _parentState))
+                        localctx.l = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_term)
                         self.state = 28
                         if not self.precpred(self._ctx, 3):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
                         self.state = 29
-                        self.match(PythonToLaTeXParser.MUL)
+                        localctx.op = self.match(PythonToLaTeXParser.MUL)
                         self.state = 30
-                        self.factor()
+                        localctx.r = self.factor()
                         pass
 
                     elif la_ == 2:
                         localctx = PythonToLaTeXParser.DivOpContext(self, PythonToLaTeXParser.TermContext(self, _parentctx, _parentState))
+                        localctx.l = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_term)
                         self.state = 31
                         if not self.precpred(self._ctx, 2):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                         self.state = 32
-                        self.match(PythonToLaTeXParser.DIV)
+                        localctx.op = self.match(PythonToLaTeXParser.DIV)
                         self.state = 33
-                        self.factor()
+                        localctx.r = self.factor()
                         pass
 
              

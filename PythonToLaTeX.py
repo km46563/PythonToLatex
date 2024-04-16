@@ -8,30 +8,32 @@ class PythonToLaTeXVisitor(antlr4.ParseTreeVisitor):
         return self.visitExpression(ctx.expression())
 
     def visitExpression(self, ctx:PythonToLaTeXParser.ExpressionContext):
-        if ctx.getChildCount() > 1 and ctx.getChild(1).getText() in ['+', '-']:
-            left = self.visitExpression(ctx.expression())
-            right = self.visitTerm(ctx.term())
-            operator = ctx.getChild(1).getText()
+        if hasattr(ctx, 'op'):
+            left = self.visitExpression(ctx.l)
+            right = self.visitTerm(ctx.r)
+            operator = ctx.op.text
             return f"{left} {operator} {right}"
         else:
             return self.visitTerm(ctx.term())
 
     def visitTerm(self, ctx: PythonToLaTeXParser.TermContext):
-        if ctx.getChildCount() > 1 and ctx.getChild(1).getText() in ['*', '/']:
+        if hasattr(ctx, 'op'):
             left = self.visitTerm(ctx.term())
             right = self.visitFactor(ctx.factor())
-            operator = ctx.getChild(1).getText()
+            operator = ctx.op.text
             return f"{left} {operator} {right}"
         else:
             return self.visitFactor(ctx.factor())
 
     def visitFactor(self, ctx: PythonToLaTeXParser.FactorContext):
-        if ctx.INT():
+        if hasattr(ctx, 'INT'):
             return ctx.INT().getText()
+        elif hasattr(ctx, 'ID'):
+            return ctx.ID().getText()
         elif ctx.expression():
             return f"({self.visitExpression(ctx.expression())})"
         else:
-            return None
+            raise ValueError("Unknown factor context")
 
 def convert_to_latex(expression):
     lexer = PythonToLaTeXLexer(antlr4.InputStream(expression))
@@ -42,6 +44,6 @@ def convert_to_latex(expression):
     return visitor.visitStart(tree)
 
 
-expression = "2 + 3 * 4"
+expression = "2 * (3 + 4) - 5 / 2"
 latex = convert_to_latex(expression)
 print(latex)

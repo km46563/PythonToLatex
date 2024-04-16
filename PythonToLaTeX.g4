@@ -4,13 +4,13 @@ grammar PythonToLaTeX;
 
 start: expression EOF;
 
-expression: expression '+' term #addOp
-          | expression '-' term #subOp
+expression: l=expression op=ADD r=term #addOp
+          | l=expression op=SUB r=term #subOp
           | term                #exprTerm
           ;
 
-term: term '*' factor           #mulOp
-    | term '/' factor           #divOp
+term: l=term op=MUL r=factor           #mulOp
+    | l=term op=DIV r=factor           #divOp
     | factor                    #termFactor
     ;
 
