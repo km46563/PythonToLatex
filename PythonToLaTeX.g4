@@ -8,11 +8,11 @@ stat: '[' numerator=stat ']' op=(FRACTIONS|POWERS) '[' denominator=stat ']' #equ
 	| expression #exprStatic
 	;
 
-expression: l=expression op=ADD r=expression #addOp
+expression: factor                           #exprTerm
+		  | l=expression op=ADD r=expression #addOp
           | l=expression op=SUB r=expression #subOp
           | l=expression op=DIV r=expression #divOp
           | l=expression op=MUL r=expression #mulOp
-          | factor                #exprTerm
           ;
 
 
