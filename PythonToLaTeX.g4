@@ -2,25 +2,29 @@ grammar PythonToLaTeX;
 
 // Parser Rules
 
-start: expression EOF;
+start: stat* EOF;
 
-expression: l=expression op=ADD r=term #addOp
-          | l=expression op=SUB r=term #subOp
-          | term                #exprTerm
+stat: '[' numerator=stat ']' op=(FRACTIONS|POWERS) '[' denominator=stat ']' #equationFloor
+	| expression #exprStatic
+	;
+
+expression: l=expression op=ADD r=expression #addOp
+          | l=expression op=SUB r=expression #subOp
+          | l=expression op=DIV r=expression #divOp
+          | l=expression op=MUL r=expression #mulOp
+          | factor                #exprTerm
           ;
 
-term: l=term op=MUL r=factor           #mulOp
-    | l=term op=DIV r=factor           #divOp
-    | factor                    #termFactor
-    ;
 
 factor: INT                     #number
       | ID                      #variable
-      | '(' expression ')'      #parenExpr
+      | LPAREN stat RPAREN      #parenExpr
       ;
 
 // Lexer Rules
 
+FRACTIONS: '//';
+POWERS: '^';
 ADD: '+';
 SUB: '-';
 MUL: '*';
