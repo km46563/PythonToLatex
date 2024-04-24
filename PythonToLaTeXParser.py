@@ -10,21 +10,24 @@ else:
 
 def serializedATN():
     return [
-        4,1,12,48,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,0,1,0,1,1,1,1,1,
+        4,1,13,57,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,1,0,1,0,1,1,1,1,1,
         1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,21,8,1,10,1,12,1,24,9,1,1,2,1,2,1,
         2,1,2,1,2,1,2,1,2,1,2,1,2,5,2,35,8,2,10,2,12,2,38,9,2,1,3,1,3,1,
-        3,1,3,1,3,1,3,3,3,46,8,3,1,3,0,2,2,4,4,0,2,4,6,0,0,49,0,8,1,0,0,
-        0,2,11,1,0,0,0,4,25,1,0,0,0,6,45,1,0,0,0,8,9,3,2,1,0,9,10,5,0,0,
-        1,10,1,1,0,0,0,11,12,6,1,-1,0,12,13,3,4,2,0,13,22,1,0,0,0,14,15,
-        10,3,0,0,15,16,5,1,0,0,16,21,3,4,2,0,17,18,10,2,0,0,18,19,5,2,0,
-        0,19,21,3,4,2,0,20,14,1,0,0,0,20,17,1,0,0,0,21,24,1,0,0,0,22,20,
-        1,0,0,0,22,23,1,0,0,0,23,3,1,0,0,0,24,22,1,0,0,0,25,26,6,2,-1,0,
-        26,27,3,6,3,0,27,36,1,0,0,0,28,29,10,3,0,0,29,30,5,3,0,0,30,35,3,
-        6,3,0,31,32,10,2,0,0,32,33,5,4,0,0,33,35,3,6,3,0,34,28,1,0,0,0,34,
-        31,1,0,0,0,35,38,1,0,0,0,36,34,1,0,0,0,36,37,1,0,0,0,37,5,1,0,0,
-        0,38,36,1,0,0,0,39,46,5,10,0,0,40,46,5,11,0,0,41,42,5,8,0,0,42,43,
-        3,2,1,0,43,44,5,9,0,0,44,46,1,0,0,0,45,39,1,0,0,0,45,40,1,0,0,0,
-        45,41,1,0,0,0,46,7,1,0,0,0,5,20,22,34,36,45
+        3,1,3,1,3,1,3,1,3,3,3,47,8,3,1,3,1,3,1,3,5,3,52,8,3,10,3,12,3,55,
+        9,3,1,3,0,3,2,4,6,4,0,2,4,6,0,0,59,0,8,1,0,0,0,2,11,1,0,0,0,4,25,
+        1,0,0,0,6,46,1,0,0,0,8,9,3,2,1,0,9,10,5,0,0,1,10,1,1,0,0,0,11,12,
+        6,1,-1,0,12,13,3,4,2,0,13,22,1,0,0,0,14,15,10,3,0,0,15,16,5,1,0,
+        0,16,21,3,4,2,0,17,18,10,2,0,0,18,19,5,2,0,0,19,21,3,4,2,0,20,14,
+        1,0,0,0,20,17,1,0,0,0,21,24,1,0,0,0,22,20,1,0,0,0,22,23,1,0,0,0,
+        23,3,1,0,0,0,24,22,1,0,0,0,25,26,6,2,-1,0,26,27,3,6,3,0,27,36,1,
+        0,0,0,28,29,10,3,0,0,29,30,5,3,0,0,30,35,3,6,3,0,31,32,10,2,0,0,
+        32,33,5,4,0,0,33,35,3,6,3,0,34,28,1,0,0,0,34,31,1,0,0,0,35,38,1,
+        0,0,0,36,34,1,0,0,0,36,37,1,0,0,0,37,5,1,0,0,0,38,36,1,0,0,0,39,
+        40,6,3,-1,0,40,47,5,11,0,0,41,47,5,12,0,0,42,43,5,9,0,0,43,44,3,
+        2,1,0,44,45,5,10,0,0,45,47,1,0,0,0,46,39,1,0,0,0,46,41,1,0,0,0,46,
+        42,1,0,0,0,47,53,1,0,0,0,48,49,10,1,0,0,49,50,5,5,0,0,50,52,3,6,
+        3,2,51,48,1,0,0,0,52,55,1,0,0,0,53,51,1,0,0,0,53,54,1,0,0,0,54,7,
+        1,0,0,0,55,53,1,0,0,0,6,20,22,34,36,46,53
     ]
 
 class PythonToLaTeXParser ( Parser ):
@@ -37,11 +40,12 @@ class PythonToLaTeXParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'+'", "'-'", "'*'", "'/'", "'='", "'.'", 
-                     "';'", "'('", "')'" ]
+    literalNames = [ "<INVALID>", "'+'", "'-'", "'*'", "'/'", "'**'", "'='", 
+                     "'.'", "';'", "'('", "')'" ]
 
-    symbolicNames = [ "<INVALID>", "ADD", "SUB", "MUL", "DIV", "EQ", "COMMA", 
-                      "SEMI", "LPAREN", "RPAREN", "INT", "ID", "WS" ]
+    symbolicNames = [ "<INVALID>", "ADD", "SUB", "MUL", "DIV", "POW", "EQ", 
+                      "COMMA", "SEMI", "LPAREN", "RPAREN", "INT", "ID", 
+                      "WS" ]
 
     RULE_start = 0
     RULE_expression = 1
@@ -55,14 +59,15 @@ class PythonToLaTeXParser ( Parser ):
     SUB=2
     MUL=3
     DIV=4
-    EQ=5
-    COMMA=6
-    SEMI=7
-    LPAREN=8
-    RPAREN=9
-    INT=10
-    ID=11
-    WS=12
+    POW=5
+    EQ=6
+    COMMA=7
+    SEMI=8
+    LPAREN=9
+    RPAREN=10
+    INT=11
+    ID=12
+    WS=13
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -383,7 +388,7 @@ class PythonToLaTeXParser ( Parser ):
             _prevctx = localctx
 
             self.state = 26
-            self.factor()
+            self.factor(0)
             self._ctx.stop = self._input.LT(-1)
             self.state = 36
             self._errHandler.sync(self)
@@ -407,7 +412,7 @@ class PythonToLaTeXParser ( Parser ):
                         self.state = 29
                         localctx.op = self.match(PythonToLaTeXParser.MUL)
                         self.state = 30
-                        localctx.r = self.factor()
+                        localctx.r = self.factor(0)
                         pass
 
                     elif la_ == 2:
@@ -421,7 +426,7 @@ class PythonToLaTeXParser ( Parser ):
                         self.state = 32
                         localctx.op = self.match(PythonToLaTeXParser.DIV)
                         self.state = 33
-                        localctx.r = self.factor()
+                        localctx.r = self.factor(0)
                         pass
 
              
@@ -454,7 +459,6 @@ class PythonToLaTeXParser ( Parser ):
             super().copyFrom(ctx)
 
 
-
     class NumberContext(FactorContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.FactorContext
@@ -471,6 +475,33 @@ class PythonToLaTeXParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitNumber" ):
                 listener.exitNumber(self)
+
+
+    class PowOpContext(FactorContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.FactorContext
+            super().__init__(parser)
+            self.l = None # FactorContext
+            self.op = None # Token
+            self.r = None # FactorContext
+            self.copyFrom(ctx)
+
+        def factor(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(PythonToLaTeXParser.FactorContext)
+            else:
+                return self.getTypedRuleContext(PythonToLaTeXParser.FactorContext,i)
+
+        def POW(self):
+            return self.getToken(PythonToLaTeXParser.POW, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterPowOp" ):
+                listener.enterPowOp(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitPowOp" ):
+                listener.exitPowOp(self)
 
 
     class VariableContext(FactorContext):
@@ -515,45 +546,77 @@ class PythonToLaTeXParser ( Parser ):
 
 
 
-    def factor(self):
-
-        localctx = PythonToLaTeXParser.FactorContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_factor)
+    def factor(self, _p:int=0):
+        _parentctx = self._ctx
+        _parentState = self.state
+        localctx = PythonToLaTeXParser.FactorContext(self, self._ctx, _parentState)
+        _prevctx = localctx
+        _startState = 6
+        self.enterRecursionRule(localctx, 6, self.RULE_factor, _p)
         try:
-            self.state = 45
+            self.enterOuterAlt(localctx, 1)
+            self.state = 46
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [10]:
+            if token in [11]:
                 localctx = PythonToLaTeXParser.NumberContext(self, localctx)
-                self.enterOuterAlt(localctx, 1)
-                self.state = 39
+                self._ctx = localctx
+                _prevctx = localctx
+
+                self.state = 40
                 self.match(PythonToLaTeXParser.INT)
                 pass
-            elif token in [11]:
+            elif token in [12]:
                 localctx = PythonToLaTeXParser.VariableContext(self, localctx)
-                self.enterOuterAlt(localctx, 2)
-                self.state = 40
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 41
                 self.match(PythonToLaTeXParser.ID)
                 pass
-            elif token in [8]:
+            elif token in [9]:
                 localctx = PythonToLaTeXParser.ParenExprContext(self, localctx)
-                self.enterOuterAlt(localctx, 3)
-                self.state = 41
-                self.match(PythonToLaTeXParser.LPAREN)
+                self._ctx = localctx
+                _prevctx = localctx
                 self.state = 42
-                self.expression(0)
+                self.match(PythonToLaTeXParser.LPAREN)
                 self.state = 43
+                self.expression(0)
+                self.state = 44
                 self.match(PythonToLaTeXParser.RPAREN)
                 pass
             else:
                 raise NoViableAltException(self)
+
+            self._ctx.stop = self._input.LT(-1)
+            self.state = 53
+            self._errHandler.sync(self)
+            _alt = self._interp.adaptivePredict(self._input,5,self._ctx)
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt==1:
+                    if self._parseListeners is not None:
+                        self.triggerExitRuleEvent()
+                    _prevctx = localctx
+                    localctx = PythonToLaTeXParser.PowOpContext(self, PythonToLaTeXParser.FactorContext(self, _parentctx, _parentState))
+                    localctx.l = _prevctx
+                    self.pushNewRecursionContext(localctx, _startState, self.RULE_factor)
+                    self.state = 48
+                    if not self.precpred(self._ctx, 1):
+                        from antlr4.error.Errors import FailedPredicateException
+                        raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
+                    self.state = 49
+                    localctx.op = self.match(PythonToLaTeXParser.POW)
+                    self.state = 50
+                    localctx.r = self.factor(2) 
+                self.state = 55
+                self._errHandler.sync(self)
+                _alt = self._interp.adaptivePredict(self._input,5,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
         finally:
-            self.exitRule()
+            self.unrollRecursionContexts(_parentctx)
         return localctx
 
 
@@ -563,6 +626,7 @@ class PythonToLaTeXParser ( Parser ):
             self._predicates = dict()
         self._predicates[1] = self.expression_sempred
         self._predicates[2] = self.term_sempred
+        self._predicates[3] = self.factor_sempred
         pred = self._predicates.get(ruleIndex, None)
         if pred is None:
             raise Exception("No predicate with index:" + str(ruleIndex))
@@ -585,6 +649,11 @@ class PythonToLaTeXParser ( Parser ):
 
             if predIndex == 3:
                 return self.precpred(self._ctx, 2)
+         
+
+    def factor_sempred(self, localctx:FactorContext, predIndex:int):
+            if predIndex == 4:
+                return self.precpred(self._ctx, 1)
          
 
 

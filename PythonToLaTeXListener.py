@@ -80,6 +80,15 @@ class PythonToLaTeXListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PythonToLaTeXParser#powOp.
+    def enterPowOp(self, ctx:PythonToLaTeXParser.PowOpContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#powOp.
+    def exitPowOp(self, ctx:PythonToLaTeXParser.PowOpContext):
+        pass
+
+
     # Enter a parse tree produced by PythonToLaTeXParser#variable.
     def enterVariable(self, ctx:PythonToLaTeXParser.VariableContext):
         pass

@@ -30,8 +30,14 @@ class PythonToLaTeXVisitor(antlr4.ParseTreeVisitor):
             return ctx.INT().getText()
         elif hasattr(ctx, 'ID'):
             return ctx.ID().getText()
-        elif ctx.expression():
+        elif hasattr(ctx, 'expression'):
             return f"({self.visitExpression(ctx.expression())})"
+        elif hasattr(ctx, 'factor'):
+            left = self.visitFactor(ctx.l)
+            right = self.visitFactor(ctx.r)
+            if ctx.op.text == '**':
+                operator = '^'
+            return f"({left} {operator} {right})"
         else:
             raise ValueError("Unknown factor context")
 
@@ -44,6 +50,6 @@ def convert_to_latex(expression):
     return visitor.visitStart(tree)
 
 
-expression = "2 * (3 + 4) - 5 / 2"
+expression = "2 * (3 ** 4) - 5 / 2"
 latex = convert_to_latex(expression)
 print(latex)

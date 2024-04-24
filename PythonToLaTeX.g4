@@ -17,6 +17,7 @@ term: l=term op=MUL r=factor           #mulOp
 factor: INT                     #number
       | ID                      #variable
       | '(' expression ')'      #parenExpr
+      | l=factor op=POW r=factor       #powOp
       ;
 
 // Lexer Rules
@@ -25,6 +26,7 @@ ADD: '+';
 SUB: '-';
 MUL: '*';
 DIV: '/';
+POW: '**';
 EQ: '=';
 COMMA: '.';
 SEMI: ';';
