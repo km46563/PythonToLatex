@@ -1,57 +1,53 @@
 import antlr4
 import sys
-
+import logging
 from PythonToLaTeXLexer import PythonToLaTeXLexer
 from PythonToLaTeXParser import PythonToLaTeXParser
-from PythonToLaTeXListener import PythonToLaTeXListener
+
+logging.basicConfig(format='%(asctime)-2s,%(levelname)-2s [%(filename)s:%(lineno)d] in func %(funcName)-2s ->  %(message)s',
+                    filename='latex_lexer.log', level=logging.DEBUG, filemode="w")
 
 
-# class PythonToLaTeXVisitor(antlr4.ParseTreeVisitor):
-    # def visitStart(self, ctx:PythonToLaTeXParser.StartContext):
-    #     print(self.visitTest_1(ctx.getChild(0)))
-    # def visitTest_1(self, ctx:PythonToLaTeXParser.Test_1Context):
-    #     print(ctx.getText())
-    # def factor
+class PythonToLaTeXVisitor(antlr4.ParseTreeVisitor):
+    def __init__(self, parser, token_stream, lexer):
+        self.parser = parser
+        self.tokens_stream = token_stream
+        self.lexer = lexer
 
-    # def visitStat(self, ctx:PythonToLaTeXParser.StatContext):
-    #     if ctx.getChildCount() == 3:
-    #         print("dupa 3")
-    #     if ctx.getChildCount() == 2:
-    #         print("dupa 3")
-    #     if ctx.getChildCount() == 1:
-    #         print("dupa 3")
-    #     if ctx.getChildCount() == 0:
-    #         print("dupa 3")
-            ######
-        # if hasattr(ctx, 'op'):
-        #     print("numerator laduje do visitStat")
-        #     numerator = self.visitStat(ctx.numerator())
-        #     print("denominator laduje do visitStat")
-        #     denominator = self.visitStat(ctx.denominator())
-        #     print("pobieram operator")
-        #     operator = str(ctx.op.text)
-        #     print("operator: ", operator)
-        #     if operator == "//":
-        #         print("koniec jako ułamek")
-        #         return f"\\frac'{{{numerator}}}{{{denominator}}}"
-        #     elif operator == "^":
-        #         print("koniec jako potęga")
-        #         return f"{numerator}^{denominator}"
-        #     else:
-        #         return ValueError("Unknown operation")
+    def visitStart(self, ctx:PythonToLaTeXParser.StartContext):
+        logging.debug(f"contain ctx object with those elements: {ctx.__dir__()}")
+        logging.info(f"ctx contain text in 'ctx.getText()' :  {ctx.getText()}")
+        logging.info(f"ctx has {ctx.getChildCount()} children: with {[x for x in range(ctx.getChildCount())]} index ")
+        logging.debug(f"they can be called by 'ctx.getChild(i)' where 'i' is the child index and have those elements {ctx.getChild(0).__dir__()}")
+        logging.info(f"the '0' contain this text: '{ctx.getChild(0).getText()}' and 'EOF' contain text: '{ctx.getChild(ctx.getChildCount()-1).getText()}'")
+        for i in range(ctx.getChildCount()-1):   # we want to skip <EOF>
+            child = ctx.getChild(i)
+            rule_index = child.getRuleIndex()
+            child_name = self.parser.ruleNames[rule_index]
+            logging.info(f"founded child name {child_name}")
+            if child_name == "stat":
+                return f"{self.visitStat(child)}"
+        return None
 
-        # else:
-        #     print(dir(ctx))
-        #     return self.visitExpression(ctx.expression())
+    def visitStat(self, ctx: PythonToLaTeXParser.StatContext):
+        logging.debug(f"Stat children: {ctx.__dir__()}")
+        if hasattr(ctx, 'expression'):
+            return self.visitExpression(ctx.expression())
+        else:
+            logging.debug(f"op elements: {ctx.op.__dir__()}")
+            if ctx.op.text == "//":
+                logging.info(f"found operator '//'")
+                return r"\frac{"+self.visitStat(ctx.numerator)+r"}{"+self.visitStat(ctx.denominator)+r"}"
+            if ctx.op.text == "^":
+                logging.info(f"found operator '^'")
+                return r"{"+self.visitStat(ctx.numerator)+r"}^{"+self.visitStat(ctx.denominator)+r"}"
 
-    # def visitExpression(self, ctx:PythonToLaTeXParser.ExpressionContext):
-    #     if hasattr(ctx, 'op'):
-    #         left = self.visitExpression(ctx.l)
-    #         right = self.visitExpression(ctx.r)
-    #         operator = str(ctx.op.text)
-    #         print(f"{left}{operator}{right}")
-    #     else:
-    #         print(self.visitFactor(ctx.factor()))
+    def visitExpression(self, ctx: PythonToLaTeXParser.ExpressionContext):
+        # print(ctx.__dir__())
+        if hasattr(ctx, 'factor'):
+            return ctx.factor().getText()
+        else:
+            return f"{self.visitExpression(ctx.l)}{ctx.op.text}{self.visitExpression(ctx.r)}"
 
     # def visitTerm(self, ctx: PythonToLaTeXParser.TermContext):
     #     if hasattr(ctx, 'op'):
@@ -62,52 +58,29 @@ from PythonToLaTeXListener import PythonToLaTeXListener
     #     else:
     #         return self.visitFactor(ctx.factor())
 
-    # def visitFactor(self, ctx: PythonToLaTeXParser.FactorContext):
-    #     if hasattr(ctx, 'INT'):
-    #         return ctx.INT().getText()
-    #     elif hasattr(ctx, 'ID'):
-    #         return ctx.ID().getText()
-    #     elif ctx.stat():
-    #         return f"({self.visitStat(ctx.expression())})"
-    #     else:
-    #         raise ValueError("Unknown factor context")
-class MyListener(PythonToLaTeXListener):
-    def enterEquationFloor(self, ctx):
-        numerator = ctx.numerator.getText()
-        denominator = ctx.denominator.getText()
-        op = ctx.op.text
-        print(f"Numerator: {numerator}, Denominator: {denominator}, Operation: {op}")
-    def enterExprStatic(self, ctx):
-        print("Static Expression:", ctx.getText())
-
-    def enterAddOp(self, ctx):
-        print("Addition Operation:", ctx.getText())
-
-    def enterSubOp(self, ctx):
-        print("Subtraction Operation:", ctx.getText())
-
-    def enterDivOp(self, ctx):
-        print("Division Operation:", ctx.getText())
-
-    def enterMulOp(self, ctx):
-        print("Multiplication Operation:", ctx.getText())
-
-    def enterPowOp(self, ctx):
-        print("Power Operation:", ctx.getText())
+    def visitFactor(self, ctx: PythonToLaTeXParser.FactorContext):
+        if hasattr(ctx, 'INT'):
+            return ctx.INT().getText()
+        elif hasattr(ctx, 'ID'):
+            return ctx.ID().getText()
+        elif ctx.stat():
+            return f"({self.visitStat(ctx.expression())})"
+        else:
+            raise ValueError("Unknown factor context")
 
 def convert_to_latex(expression):
     lexer = PythonToLaTeXLexer(antlr4.InputStream(expression))
-    tokens = antlr4.CommonTokenStream(lexer)
-    parser = PythonToLaTeXParser(tokens)
-    parser.addParseListener(MyListener())
-    parser.start()
-    # tree = parser.start()
-    # visitor = MyListener()
-    # if parser.getNumberOfSyntaxErrors() > 0:
-    #     print("syntax errors")
-    # return visitor.exitStart(tree)
+    stream = antlr4.CommonTokenStream(lexer)
+    # print(stream.__dir__())
+    parser = PythonToLaTeXParser(stream)
+    # print(parser.__dir__())
+    tree = parser.start()
+    visitor = PythonToLaTeXVisitor(parser, stream, lexer)
+    return visitor.visitStart(tree)
 
-
-expression = "[2 + 3] // [4]"
-convert_to_latex(expression)
-# print(latex)
+if __name__ == '__main__':
+    logging.info("============ Start program ============")
+    expression = "[[[2 + 2 - 3] // [3]]//[2+2]]^[[2]//[3]]"
+    logging.info(f"Entered expresion: {expression}")
+    latex = convert_to_latex(expression)
+    print(latex)
