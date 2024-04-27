@@ -17,6 +17,42 @@ class PythonToLaTeXListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PythonToLaTeXParser#equationFloor.
+    def enterEquationFloor(self, ctx:PythonToLaTeXParser.EquationFloorContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#equationFloor.
+    def exitEquationFloor(self, ctx:PythonToLaTeXParser.EquationFloorContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#exprStatic.
+    def enterExprStatic(self, ctx:PythonToLaTeXParser.ExprStaticContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#exprStatic.
+    def exitExprStatic(self, ctx:PythonToLaTeXParser.ExprStaticContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#divOp.
+    def enterDivOp(self, ctx:PythonToLaTeXParser.DivOpContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#divOp.
+    def exitDivOp(self, ctx:PythonToLaTeXParser.DivOpContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#mulOp.
+    def enterMulOp(self, ctx:PythonToLaTeXParser.MulOpContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#mulOp.
+    def exitMulOp(self, ctx:PythonToLaTeXParser.MulOpContext):
+        pass
+
+
     # Enter a parse tree produced by PythonToLaTeXParser#addOp.
     def enterAddOp(self, ctx:PythonToLaTeXParser.AddOpContext):
         pass
@@ -41,33 +77,6 @@ class PythonToLaTeXListener(ParseTreeListener):
 
     # Exit a parse tree produced by PythonToLaTeXParser#exprTerm.
     def exitExprTerm(self, ctx:PythonToLaTeXParser.ExprTermContext):
-        pass
-
-
-    # Enter a parse tree produced by PythonToLaTeXParser#divOp.
-    def enterDivOp(self, ctx:PythonToLaTeXParser.DivOpContext):
-        pass
-
-    # Exit a parse tree produced by PythonToLaTeXParser#divOp.
-    def exitDivOp(self, ctx:PythonToLaTeXParser.DivOpContext):
-        pass
-
-
-    # Enter a parse tree produced by PythonToLaTeXParser#mulOp.
-    def enterMulOp(self, ctx:PythonToLaTeXParser.MulOpContext):
-        pass
-
-    # Exit a parse tree produced by PythonToLaTeXParser#mulOp.
-    def exitMulOp(self, ctx:PythonToLaTeXParser.MulOpContext):
-        pass
-
-
-    # Enter a parse tree produced by PythonToLaTeXParser#termFactor.
-    def enterTermFactor(self, ctx:PythonToLaTeXParser.TermFactorContext):
-        pass
-
-    # Exit a parse tree produced by PythonToLaTeXParser#termFactor.
-    def exitTermFactor(self, ctx:PythonToLaTeXParser.TermFactorContext):
         pass
 
 
