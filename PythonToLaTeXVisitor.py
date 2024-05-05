@@ -14,13 +14,28 @@ class PythonToLaTeXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PythonToLaTeXParser#equationFloor.
-    def visitEquationFloor(self, ctx:PythonToLaTeXParser.EquationFloorContext):
+    # Visit a parse tree produced by PythonToLaTeXParser#equationStatic.
+    def visitEquationStatic(self, ctx:PythonToLaTeXParser.EquationStaticContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PythonToLaTeXParser#exprStatic.
-    def visitExprStatic(self, ctx:PythonToLaTeXParser.ExprStaticContext):
+    # Visit a parse tree produced by PythonToLaTeXParser#primaryEquation.
+    def visitPrimaryEquation(self, ctx:PythonToLaTeXParser.PrimaryEquationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PythonToLaTeXParser#statExpression.
+    def visitStatExpression(self, ctx:PythonToLaTeXParser.StatExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PythonToLaTeXParser#staticFloor.
+    def visitStaticFloor(self, ctx:PythonToLaTeXParser.StaticFloorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PythonToLaTeXParser#parenExpr.
+    def visitParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
         return self.visitChildren(ctx)
 
 
@@ -34,6 +49,11 @@ class PythonToLaTeXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PythonToLaTeXParser#exprFactor.
+    def visitExprFactor(self, ctx:PythonToLaTeXParser.ExprFactorContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PythonToLaTeXParser#addOp.
     def visitAddOp(self, ctx:PythonToLaTeXParser.AddOpContext):
         return self.visitChildren(ctx)
@@ -44,11 +64,6 @@ class PythonToLaTeXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PythonToLaTeXParser#exprTerm.
-    def visitExprTerm(self, ctx:PythonToLaTeXParser.ExprTermContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by PythonToLaTeXParser#number.
     def visitNumber(self, ctx:PythonToLaTeXParser.NumberContext):
         return self.visitChildren(ctx)
@@ -56,11 +71,6 @@ class PythonToLaTeXVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by PythonToLaTeXParser#variable.
     def visitVariable(self, ctx:PythonToLaTeXParser.VariableContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PythonToLaTeXParser#parenExpr.
-    def visitParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
         return self.visitChildren(ctx)
 
 

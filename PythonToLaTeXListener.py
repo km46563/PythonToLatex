@@ -17,21 +17,48 @@ class PythonToLaTeXListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PythonToLaTeXParser#equationFloor.
-    def enterEquationFloor(self, ctx:PythonToLaTeXParser.EquationFloorContext):
+    # Enter a parse tree produced by PythonToLaTeXParser#equationStatic.
+    def enterEquationStatic(self, ctx:PythonToLaTeXParser.EquationStaticContext):
         pass
 
-    # Exit a parse tree produced by PythonToLaTeXParser#equationFloor.
-    def exitEquationFloor(self, ctx:PythonToLaTeXParser.EquationFloorContext):
+    # Exit a parse tree produced by PythonToLaTeXParser#equationStatic.
+    def exitEquationStatic(self, ctx:PythonToLaTeXParser.EquationStaticContext):
         pass
 
 
-    # Enter a parse tree produced by PythonToLaTeXParser#exprStatic.
-    def enterExprStatic(self, ctx:PythonToLaTeXParser.ExprStaticContext):
+    # Enter a parse tree produced by PythonToLaTeXParser#primaryEquation.
+    def enterPrimaryEquation(self, ctx:PythonToLaTeXParser.PrimaryEquationContext):
         pass
 
-    # Exit a parse tree produced by PythonToLaTeXParser#exprStatic.
-    def exitExprStatic(self, ctx:PythonToLaTeXParser.ExprStaticContext):
+    # Exit a parse tree produced by PythonToLaTeXParser#primaryEquation.
+    def exitPrimaryEquation(self, ctx:PythonToLaTeXParser.PrimaryEquationContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#statExpression.
+    def enterStatExpression(self, ctx:PythonToLaTeXParser.StatExpressionContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#statExpression.
+    def exitStatExpression(self, ctx:PythonToLaTeXParser.StatExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#staticFloor.
+    def enterStaticFloor(self, ctx:PythonToLaTeXParser.StaticFloorContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#staticFloor.
+    def exitStaticFloor(self, ctx:PythonToLaTeXParser.StaticFloorContext):
+        pass
+
+
+    # Enter a parse tree produced by PythonToLaTeXParser#parenExpr.
+    def enterParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#parenExpr.
+    def exitParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
         pass
 
 
@@ -53,6 +80,15 @@ class PythonToLaTeXListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PythonToLaTeXParser#exprFactor.
+    def enterExprFactor(self, ctx:PythonToLaTeXParser.ExprFactorContext):
+        pass
+
+    # Exit a parse tree produced by PythonToLaTeXParser#exprFactor.
+    def exitExprFactor(self, ctx:PythonToLaTeXParser.ExprFactorContext):
+        pass
+
+
     # Enter a parse tree produced by PythonToLaTeXParser#addOp.
     def enterAddOp(self, ctx:PythonToLaTeXParser.AddOpContext):
         pass
@@ -71,15 +107,6 @@ class PythonToLaTeXListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PythonToLaTeXParser#exprTerm.
-    def enterExprTerm(self, ctx:PythonToLaTeXParser.ExprTermContext):
-        pass
-
-    # Exit a parse tree produced by PythonToLaTeXParser#exprTerm.
-    def exitExprTerm(self, ctx:PythonToLaTeXParser.ExprTermContext):
-        pass
-
-
     # Enter a parse tree produced by PythonToLaTeXParser#number.
     def enterNumber(self, ctx:PythonToLaTeXParser.NumberContext):
         pass
@@ -95,15 +122,6 @@ class PythonToLaTeXListener(ParseTreeListener):
 
     # Exit a parse tree produced by PythonToLaTeXParser#variable.
     def exitVariable(self, ctx:PythonToLaTeXParser.VariableContext):
-        pass
-
-
-    # Enter a parse tree produced by PythonToLaTeXParser#parenExpr.
-    def enterParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
-        pass
-
-    # Exit a parse tree produced by PythonToLaTeXParser#parenExpr.
-    def exitParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
         pass
 
 

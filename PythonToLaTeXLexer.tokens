@@ -11,9 +11,14 @@ COMMA=10
 SEMI=11
 LPAREN=12
 RPAREN=13
-INT=14
-ID=15
-WS=16
+GREATER=14
+LESSER=15
+GREATEREQ=16
+LESSEREQ=17
+UNEQ=18
+INT=19
+ID=20
+WS=21
 '['=1
 ']'=2
 '//'=3
@@ -27,3 +32,8 @@ WS=16
 ';'=11
 '('=12
 ')'=13
+'>'=14
+'<'=15
+'>='=16
+'<='=17
+'!='=18
