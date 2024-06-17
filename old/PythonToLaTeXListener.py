@@ -1,7 +1,7 @@
 # Generated from PythonToLaTeX.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
-    from .PythonToLaTeXParser import PythonToLaTeXParser
+    from PythonToLaTeXParser import PythonToLaTeXParser
 else:
     from PythonToLaTeXParser import PythonToLaTeXParser
 
@@ -35,30 +35,12 @@ class PythonToLaTeXListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PythonToLaTeXParser#statExpression.
-    def enterStatExpression(self, ctx:PythonToLaTeXParser.StatExpressionContext):
+    # Enter a parse tree produced by PythonToLaTeXParser#stat.
+    def enterStat(self, ctx:PythonToLaTeXParser.StatContext):
         pass
 
-    # Exit a parse tree produced by PythonToLaTeXParser#statExpression.
-    def exitStatExpression(self, ctx:PythonToLaTeXParser.StatExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by PythonToLaTeXParser#staticFloor.
-    def enterStaticFloor(self, ctx:PythonToLaTeXParser.StaticFloorContext):
-        pass
-
-    # Exit a parse tree produced by PythonToLaTeXParser#staticFloor.
-    def exitStaticFloor(self, ctx:PythonToLaTeXParser.StaticFloorContext):
-        pass
-
-
-    # Enter a parse tree produced by PythonToLaTeXParser#parenExpr.
-    def enterParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
-        pass
-
-    # Exit a parse tree produced by PythonToLaTeXParser#parenExpr.
-    def exitParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
+    # Exit a parse tree produced by PythonToLaTeXParser#stat.
+    def exitStat(self, ctx:PythonToLaTeXParser.StatContext):
         pass
 
 

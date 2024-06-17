@@ -8,9 +8,9 @@ equation: stat  #equationStatic
 		| l=equation op=(EQ|GREATER|LESSER|GREATEREQ|LESSEREQ|UNEQ) (r=equation)? #primaryEquation
 		;
 
-stat: expression #statExpression
-	| '[' numerator=stat ']' florOp=(FRACTIONS|POWERS) '[' denominator=stat ']' (simplOp=(ADD|SUB|DIV|MUL) rest=stat)? #staticFloor
-	| LPAREN stat RPAREN (simplOp=(ADD|SUB|DIV|MUL) rest=stat)?   #parenExpr
+stat: expression
+	| '[' numerator=stat ']' florOp=(FRACTIONS|POWERS) '[' denominator=stat ']' (simplOp=(ADD|SUB|DIV|MUL) rest=stat)?
+	| LPAREN stat RPAREN (simplOp=(ADD|SUB|DIV|MUL) rest=stat)?
 	;
 
 expression: factor                           #exprFactor

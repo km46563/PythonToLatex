@@ -313,127 +313,64 @@ class PythonToLaTeXParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
-
-
-        def getRuleIndex(self):
-            return PythonToLaTeXParser.RULE_stat
-
-     
-        def copyFrom(self, ctx:ParserRuleContext):
-            super().copyFrom(ctx)
-
-
-
-    class StatExpressionContext(StatContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.StatContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def expression(self):
-            return self.getTypedRuleContext(PythonToLaTeXParser.ExpressionContext,0)
-
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterStatExpression" ):
-                listener.enterStatExpression(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitStatExpression" ):
-                listener.exitStatExpression(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStatExpression" ):
-                return visitor.visitStatExpression(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-    class StaticFloorContext(StatContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.StatContext
-            super().__init__(parser)
             self.numerator = None # StatContext
             self.florOp = None # Token
             self.denominator = None # StatContext
             self.simplOp = None # Token
             self.rest = None # StatContext
-            self.copyFrom(ctx)
+
+        def expression(self):
+            return self.getTypedRuleContext(PythonToLaTeXParser.ExpressionContext,0)
+
 
         def stat(self, i:int=None):
             if i is None:
                 return self.getTypedRuleContexts(PythonToLaTeXParser.StatContext)
             else:
                 return self.getTypedRuleContext(PythonToLaTeXParser.StatContext,i)
+
 
         def FRACTIONS(self):
             return self.getToken(PythonToLaTeXParser.FRACTIONS, 0)
+
         def POWERS(self):
             return self.getToken(PythonToLaTeXParser.POWERS, 0)
+
         def ADD(self):
             return self.getToken(PythonToLaTeXParser.ADD, 0)
+
         def SUB(self):
             return self.getToken(PythonToLaTeXParser.SUB, 0)
+
         def DIV(self):
             return self.getToken(PythonToLaTeXParser.DIV, 0)
+
         def MUL(self):
             return self.getToken(PythonToLaTeXParser.MUL, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterStaticFloor" ):
-                listener.enterStaticFloor(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitStaticFloor" ):
-                listener.exitStaticFloor(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStaticFloor" ):
-                return visitor.visitStaticFloor(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-    class ParenExprContext(StatContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a PythonToLaTeXParser.StatContext
-            super().__init__(parser)
-            self.simplOp = None # Token
-            self.rest = None # StatContext
-            self.copyFrom(ctx)
 
         def LPAREN(self):
             return self.getToken(PythonToLaTeXParser.LPAREN, 0)
-        def stat(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(PythonToLaTeXParser.StatContext)
-            else:
-                return self.getTypedRuleContext(PythonToLaTeXParser.StatContext,i)
 
         def RPAREN(self):
             return self.getToken(PythonToLaTeXParser.RPAREN, 0)
-        def ADD(self):
-            return self.getToken(PythonToLaTeXParser.ADD, 0)
-        def SUB(self):
-            return self.getToken(PythonToLaTeXParser.SUB, 0)
-        def DIV(self):
-            return self.getToken(PythonToLaTeXParser.DIV, 0)
-        def MUL(self):
-            return self.getToken(PythonToLaTeXParser.MUL, 0)
+
+        def getRuleIndex(self):
+            return PythonToLaTeXParser.RULE_stat
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterParenExpr" ):
-                listener.enterParenExpr(self)
+            if hasattr( listener, "enterStat" ):
+                listener.enterStat(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitParenExpr" ):
-                listener.exitParenExpr(self)
+            if hasattr( listener, "exitStat" ):
+                listener.exitStat(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitParenExpr" ):
-                return visitor.visitParenExpr(self)
+            if hasattr( visitor, "visitStat" ):
+                return visitor.visitStat(self)
             else:
                 return visitor.visitChildren(self)
+
 
 
 
@@ -447,13 +384,11 @@ class PythonToLaTeXParser ( Parser ):
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [19, 20]:
-                localctx = PythonToLaTeXParser.StatExpressionContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 31
                 self.expression(0)
                 pass
             elif token in [1]:
-                localctx = PythonToLaTeXParser.StaticFloorContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 32
                 self.match(PythonToLaTeXParser.T__0)
@@ -493,7 +428,6 @@ class PythonToLaTeXParser ( Parser ):
 
                 pass
             elif token in [12]:
-                localctx = PythonToLaTeXParser.ParenExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
                 self.state = 43
                 self.match(PythonToLaTeXParser.LPAREN)

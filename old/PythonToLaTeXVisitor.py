@@ -24,18 +24,8 @@ class PythonToLaTeXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PythonToLaTeXParser#statExpression.
-    def visitStatExpression(self, ctx:PythonToLaTeXParser.StatExpressionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PythonToLaTeXParser#staticFloor.
-    def visitStaticFloor(self, ctx:PythonToLaTeXParser.StaticFloorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PythonToLaTeXParser#parenExpr.
-    def visitParenExpr(self, ctx:PythonToLaTeXParser.ParenExprContext):
+    # Visit a parse tree produced by PythonToLaTeXParser#stat.
+    def visitStat(self, ctx:PythonToLaTeXParser.StatContext):
         return self.visitChildren(ctx)
 
 
