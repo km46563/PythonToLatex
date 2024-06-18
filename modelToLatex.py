@@ -1,12 +1,11 @@
-import xml.etree.ElementTree as ET
-
+from pyecore.resources import ResourceSet, URI
 
 def parse_operand(element):
-    return element.text
+    return element.value
 
 
 def parse_operator(element):
-    rodzaj = element.attrib['rodzaj']
+    rodzaj = element.kind
     if rodzaj == 'Dodawanie':
         return '+'
     elif rodzaj == 'Odejmowanie':
@@ -32,47 +31,31 @@ def parse_operator(element):
 
 
 def parse_pietro(element):
-    rodzaj = element.attrib['rodzaj']
+    rodzaj = element.kind
     if rodzaj == 'Ułamek':
-        numerator = element.find('operand').text
-        denominator = element.find('operand[2]').text
+        numerator = element.operands[0].value
+        denominator = element.operands[1].value
         return f"\\frac{{{numerator}}}{{{denominator}}}"
     elif rodzaj == 'Potęga':
-        base = element.find('operand').text
-        exponent = element.find('operand[2]').text
+        base = element.operands[0].value
+        exponent = element.operands[1].value
         return f"{{{base}}}^{{{exponent}}}"
     elif rodzaj == 'Liniowe':
-        operand1 = element.find('operand').text
-        operator = parse_operator(element.find('operator'))
-        operand2 = element.find('operand[2]').text
+        operand1 = element.operands[0].value
+        operator = parse_operator(element.operators)
+        operand2 = element.operands[1].value
         return f"{{{operand1}}}{{{operator}}}{{{operand2}}}"
     else:
         raise ValueError(f"Nieznany typ piętra: {rodzaj}")
 
 
-def parse_rownanie(xml_string):
-    root = ET.fromstring(xml_string)
-    if root.tag != 'rownanie':
-        raise ValueError("Korzeniem musi być element 'rownanie'!")
-
-    latex_parts = [parse_pietro(child) for child in root]
+def parse_rownanie(rownanie):
+    latex_parts = [parse_pietro(pietro) for pietro in rownanie.floors]
     return ''.join(latex_parts)
 
+rset = ResourceSet()
+resource = rset.get_resource(URI('rownanie.xmi'))
+root = resource.contents[0]
 
-xml_string = """
-<rownanie>
-    <pietro rodzaj="Ułamek">
-        <operand>1</operand>
-        <operator rodzaj="Dzielenie"/>
-        <operand>2</operand>
-    </pietro>
-    <pietro rodzaj="Liniowe">
-        <operand>x</operand>
-        <operator rodzaj="Dodawanie"/>
-        <operand>y</operand>
-    </pietro>
-</rownanie>
-"""
-
-latex_equation = parse_rownanie(xml_string)
+latex_equation = parse_rownanie(root)
 print(latex_equation)
