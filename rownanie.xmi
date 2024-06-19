@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_8_0" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="Operand" name="Operand">
+      <ownedAttribute xmi:id="nawias" name="nawias" type="Boolean"/>
+      <ownedAttribute xmi:id="operacja" name="operacja" type="Boolean"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Operacja" name="Operacja">
+      <ownedAttribute xmi:id="element1" name="element1" type="Operand"/>
+      <ownedAttribute xmi:id="element2" name="element2" type="Operand"/>
+      <ownedAttribute xmi:id="typ" name="typ" type="TypOperacji"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="Atom" name="Atom">
+      <ownedAttribute xmi:id="wartość" name="wartość" type="char"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="TypOperacji" name="TypOperacji">
+      <ownedLiteral xmi:id="dodawanie" name="dodawanie"/>
+      <ownedLiteral xmi:id="odejmowanie" name="odejmowanie"/>
+      <ownedLiteral xmi:id="mnożenie" name="mnożenie"/>
+      <ownedLiteral xmi:id="dzielenie" name="dzielenie"/>
+      <ownedLiteral xmi:id="potęga" name="potęga"/>
+      <ownedLiteral xmi:id="pierwiastek" name="pierwiastek"/>
+      <ownedLiteral xmi:id="ułamek" name="ułamek"/>
+      <ownedLiteral xmi:id="mniejszy" name="mniejszy"/>
+      <ownedLiteral xmi:id="większy" name="większy"/>
+      <ownedLiteral xmi:id="równy" name="równy"/>
+      <ownedLiteral xmi:id="mniejszyRówny" name="mniejszyRówny"/>
+      <ownedLiteral xmi:id="większyRówny" name="większyRówny"/>
+    </packagedElement>
+    <!-- Example instance data -->
+    <uml:InstanceSpecification xmi:type="uml:InstanceSpecification" xmi:id="exampleInstance" name="exampleInstance">
+      <classifier xmi:idref="Operacja"/>
+      <slot xmi:id="element1_slot" definingFeature="element1">
+        <value xmi:type="uml:InstanceValue" instance="element1_instance"/>
+      </slot>
+      <slot xmi:id="element2_slot" definingFeature="element2">
+        <value xmi:type="uml:InstanceValue" instance="element2_instance"/>
+      </slot>
+      <slot xmi:id="typOperacji_slot" definingFeature="typOperacji">
+        <value xmi:type="uml:LiteralString" value="dodawanie"/>
+      </slot>
+    </uml:InstanceSpecification>
+  </uml:Model>
+</xmi:XMI>

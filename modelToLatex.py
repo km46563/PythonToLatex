@@ -1,61 +1,65 @@
 from pyecore.resources import ResourceSet, URI
 
+def parse_atom(element):
+    return element.wartość
+
+
+def parse_operacja(element):
+    typ = element.typ
+    element1 = parse_operand(element.element1)
+    element2 = parse_operand(element.element2)
+    if typ == 'dodawanie':
+        return f"{{{element1}}}+{{{element2}}}"
+    elif typ == 'odejmowanie':
+        return f"{{{element1}}}-{{{element2}}}"
+    elif typ == 'mnożenie':
+        return f"{{{element1}}}\\cdot{{{element2}}}"
+    elif typ == 'dzielenie' or typ == 'ułamek':
+        return f"$\\frac{{{element1}}}{{{element2}}}$"
+    elif typ == 'równy':
+        return f"{{{element1}}}={{{element2}}}"
+    elif typ == 'nierówny':
+        return f"{{{element1}}}\\neq{{{element2}}}"
+    elif typ == 'mniejszy':
+        return f"{{{element1}}}<{{{element2}}}"
+    elif typ == 'większy':
+        return f"{{{element1}}}>{{{element2}}}"
+    elif typ == 'mniejszyRówny':
+        return f"{{{element1}}}\\leq{{{element2}}}"
+    elif typ == 'większyRówny':
+        return f"{{{element1}}}\\geq{{{element2}}}"
+    elif typ == 'potęga':
+        return f"{{{element1}}}^{{{element2}}}"
+    elif typ == 'pierwiastek':
+        if element2 == '2':
+            return f"\\sqrt{{{element1}}}"
+        else:
+            return f"\\sqrt[{element2}]{{{element1}}}"
+    else:
+        raise ValueError(f"Nieznany operator: {typ}")
+
+
 def parse_operand(element):
-    return element.value
-
-
-def parse_operator(element):
-    rodzaj = element.kind
-    if rodzaj == 'Dodawanie':
-        return '+'
-    elif rodzaj == 'Odejmowanie':
-        return '-'
-    elif rodzaj == 'Mnożenie':
-        return '\\cdot'
-    elif rodzaj == 'Dzielenie':
-        return '\\frac'
-    elif rodzaj == 'Równy':
-        return '='
-    elif rodzaj == 'Nierówny':
-        return '\\neq'
-    elif rodzaj == 'Mniejszy':
-        return '<'
-    elif rodzaj == 'Większy':
-        return '>'
-    elif rodzaj == 'MniejszyRówny':
-        return '\\leq'
-    elif rodzaj == 'WiększyRówny':
-        return '\\geq'
+    if element.operacja == 'True':
+        return parse_operacja(element)
     else:
-        raise ValueError(f"Nieznany operator: {rodzaj}")
+        return parse_atom(element)
 
 
-def parse_pietro(element):
-    rodzaj = element.kind
-    if rodzaj == 'Ułamek':
-        numerator = element.operands[0].value
-        denominator = element.operands[1].value
-        return f"\\frac{{{numerator}}}{{{denominator}}}"
-    elif rodzaj == 'Potęga':
-        base = element.operands[0].value
-        exponent = element.operands[1].value
-        return f"{{{base}}}^{{{exponent}}}"
-    elif rodzaj == 'Liniowe':
-        operand1 = element.operands[0].value
-        operator = parse_operator(element.operators)
-        operand2 = element.operands[1].value
-        return f"{{{operand1}}}{{{operator}}}{{{operand2}}}"
-    else:
-        raise ValueError(f"Nieznany typ piętra: {rodzaj}")
+# Ładowanie pliku XMI
+def load_xmi(file_path):
+    rset = ResourceSet()
+    resource = rset.get_resource(URI(file_path))
+    root = resource.contents[0]
+    return root
 
+# Przetwarzanie równania z pliku XMI
+def parse_rownanie(equation_instance):
+    latex_equation = parse_operacja(equation_instance)
+    return latex_equation
 
-def parse_rownanie(rownanie):
-    latex_parts = [parse_pietro(pietro) for pietro in rownanie.floors]
-    return ''.join(latex_parts)
-
-rset = ResourceSet()
-resource = rset.get_resource(URI('rownanie.xmi'))
-root = resource.contents[0]
-
-latex_equation = parse_rownanie(root)
+# Przykład użycia
+file_path = 'rownanie.xmi'
+equation_instance = load_xmi(file_path)
+latex_equation = parse_rownanie(equation_instance)
 print(latex_equation)
