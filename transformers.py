@@ -26,8 +26,8 @@ def transformers(file_path: str):
         element_name = elem.get("name")
         element_type = elem.get("{http://schema.omg.org/spec/XMI/2.1}type")
 
-        if element_name and element_name not in structure_dict:
-            structure_dict[str(element_name)] = {"id": element_id, "params": {}}
+        if element_id and element_id not in structure_dict:
+            structure_dict[str(element_id)] = {"name": element_name, "params": {}}
         for attribute in elem.findall(".//*", namespaces):
             attribute_name = attribute.get("name")
             attribute_id = attribute.get("{http://schema.omg.org/spec/XMI/2.1}id")
@@ -42,13 +42,13 @@ def transformers(file_path: str):
                 "typ",
                 "wartość",
             ]:
-                structure_dict[str(element_name)]["params"][
+                structure_dict[str(element_id)]["params"][
                     attribute_name
                 ] = attribute_type
                 for attribute_operation in attribute:
                     at_val = attribute_operation.get("value")
                     if at_val:
-                        structure_dict[str(element_name)]["params"][
+                        structure_dict[str(element_id)]["params"][
                             attribute_name
                         ] = at_val
 

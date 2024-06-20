@@ -1,4 +1,6 @@
 from pyecore.resources import ResourceSet, URI
+import xml.etree.ElementTree as ET
+
 
 def parse_operand(element):
     return element.value
@@ -53,9 +55,16 @@ def parse_rownanie(rownanie):
     latex_parts = [parse_pietro(pietro) for pietro in rownanie.floors]
     return ''.join(latex_parts)
 
-rset = ResourceSet()
-resource = rset.get_resource(URI('rownanie.xmi'))
-root = resource.contents[0]
-
-latex_equation = parse_rownanie(root)
-print(latex_equation)
+# rset = ResourceSet()
+# resource = rset.get_resource(URI('rownanie_1.xmi'))
+# root = resource.contents[0]
+tree = ET.parse('rownanie_1.xmi')
+root = tree.getroot()
+for project in root:
+    for model in project:
+        for child in model:
+            if child.
+            print(child.get(), child.attrib)
+# print(root)
+# latex_equation = parse_rownanie(root)
+# print(latex_equation)
