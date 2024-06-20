@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 
 def transformers(file_path: str):
 
-    file_path = "rownanie_1.xmi"
+    file_path = file_path
     tree = ET.parse(file_path)
     root = tree.getroot()
 
