@@ -1,0 +1,98 @@
+{
+    "Operacja_1": {
+        "id": "of7BbAmDITAadQfb",
+        "params": {
+            "element1": "_PHVbAmDITAadQwC",
+            "element2": "ThnVbAmDITAadQwW",
+            "typ": "równy",
+            "nawias": "False"
+        }
+    },
+    "Atom_1": {
+        "id": "hwGhbAmDITAadQg3",
+        "params": {
+            "wartość": "2"
+        }
+    },
+    "Atom_2": {
+        "id": "qQ2hbAmDITAadQhG",
+        "params": {
+            "wartość": "2"
+        }
+    },
+    "Atom_3": {
+        "id": "ME2hbAmDITAadQhP",
+        "params": {
+            "wartość": "1"
+        }
+    },
+    "Atom_4": {
+        "id": "a82hbAmDITAadQhY",
+        "params": {
+            "wartość": "2"
+        }
+    },
+    "Atom_5": {
+        "id": "pq2hbAmDITAadQhh",
+        "params": {
+            "wartość": "3"
+        }
+    },
+    "Atom_6": {
+        "id": "n_OhbAmDITAadQhq",
+        "params": {
+            "wartość": "5"
+        }
+    },
+    "Atom_7": {
+        "id": "7EuhbAmDITAadQhz",
+        "params": {
+            "wartość": "2"
+        }
+    },
+    "Operacja_2": {
+        "id": "_PHVbAmDITAadQwC",
+        "params": {
+            "element1": "hwGhbAmDITAadQg3",
+            "element2": "rinVbAmDITAadQwM",
+            "typ": "dodawanie",
+            "nawias": "False"
+        }
+    },
+    "Operacja_4": {
+        "id": "rinVbAmDITAadQwM",
+        "params": {
+            "element1": "qQ2hbAmDITAadQhG",
+            "element2": "kXG9bAmDITAadQ__",
+            "typ": "mnożenie",
+            "nawias": "False"
+        }
+    },
+    "Operacja_3": {
+        "id": "ThnVbAmDITAadQwW",
+        "params": {
+            "element1": "n_OhbAmDITAadQhq",
+            "element2": "7EuhbAmDITAadQhz",
+            "typ": "potęga",
+            "nawias": "False"
+        }
+    },
+    "Operacja_6": {
+        "id": "XcG9bAmDITAadQ_0",
+        "params": {
+            "element1": "ME2hbAmDITAadQhP",
+            "element2": "a82hbAmDITAadQhY",
+            "typ": "ułamek",
+            "nawias": "False"
+        }
+    },
+    "Operacja_5": {
+        "id": "kXG9bAmDITAadQ__",
+        "params": {
+            "element1": "XcG9bAmDITAadQ_0",
+            "element2": "pq2hbAmDITAadQhh",
+            "typ": "dodawanie",
+            "nawias": "True"
+        }
+    }
+}
